@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroScan AI - Advanced Dementia Detection</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        medical: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        neural: {
+                            400: '#a78bfa',
+                            500: '#8b5cf6',
+                            600: '#7c3aed',
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'scan': 'scan 2s linear infinite',
+                    },
+                    keyframes: {
+                        scan: {
+                            '0%': { top: '0%' },
+                            '50%': { top: '100%' },
+                            '100%': { top: '0%' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass-panel {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .scan-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #0ea5e9, transparent);
+            box-shadow: 0 0 10px #0ea5e9;
+            z-index: 10;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen flex flex-col selection:bg-medical-500 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <div
+                        class="w-10 h-10 rounded-xl bg-gradient-to-br from-medical-500 to-neural-600 flex items-center justify-center shadow-lg shadow-medical-500/20">
+                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <span
+                        class="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-slate-400">NeuroScan<span
+                            class="text-medical-500">AI</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home"
+                            class="px-3 py-2 rounded-md text-sm font-medium hover:text-medical-400 transition-colors">Home</a>
+                        <a href="#analysis"
+                            class="px-3 py-2 rounded-md text-sm font-medium hover:text-medical-400 transition-colors">Analysis</a>
+                        <a href="#about"
+                            class="px-3 py-2 rounded-md text-sm font-medium hover:text-medical-400 transition-colors">Research</a>
+                        <a href="#contact"
+                            class="px-3 py-2 rounded-md text-sm font-medium hover:text-medical-400 transition-colors">Team</a>
+                    </div>
+                </div>
+                <div>
+                    <span class="text-xs text-slate-400 border border-slate-700 rounded-full px-3 py-1">v1.0.0
+                        Beta</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="home" class="flex-grow pt-24 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full flex flex-col gap-12">
+
+        <!-- Hero Section -->
+        <div
+            class="text-center py-16 lg:py-24 relative overflow-hidden rounded-3xl bg-slate-800/50 border border-slate-700/50 shadow-2xl">
+            <!-- Background Decoration -->
+            <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-30 pointer-events-none">
+                <div
+                    class="absolute -top-24 -left-24 w-96 h-96 bg-medical-500 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-slow">
+                </div>
+                <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-neural-600 rounded-full mix-blend-multiply filter blur-3xl animate-pulse-slow"
+                    style="animation-delay: 1s"></div>
+            </div>
+
+            <div class="relative z-10 max-w-3xl mx-auto px-4">
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
+                    <span class="block text-white mb-2">Early Detection of Dementia</span>
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-medical-400 to-neural-400">Dementia
+                        via MRI</span>
+                </h1>
+                <p class="mt-4 text-lg text-slate-300 max-w-2xl mx-auto">
+                    A state-of-the-art Deep Learning solution utilizing Convolutional Neural Networks (CNN) for precise
+                    classification of dementia stages from neuroimaging data.
+                </p>
+                <div class="mt-10 flex justify-center gap-4">
+                    <a href="#analysis"
+                        class="px-8 py-3 rounded-full bg-gradient-to-r from-medical-600 to-medical-500 text-white font-semibold shadow-lg shadow-medical-500/30 hover:shadow-medical-500/50 hover:scale-105 transition-all duration-300">
+                        Start Analysis
+                    </a>
+                    <a href="#about"
+                        class="px-8 py-3 rounded-full glass-panel text-white font-semibold hover:bg-slate-800 transition-all duration-300 border border-slate-600">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis Section -->
+        <section id="analysis" class="grid lg:grid-cols-2 gap-8 items-start scroll-mt-24">
+
+            <!-- Upload Card -->
+            <div
+                class="glass-panel rounded-2xl p-8 border border-slate-700 shadow-xl transition-all duration-300 hover:border-medical-500/50 group">
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-2xl font-bold flex items-center gap-2">
+                        <svg class="w-6 h-6 text-medical-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path>
+                        </svg>
+                        Upload Scan
+                    </h2>
+                    <span class="text-xs font-mono text-slate-400">Supported formats: JPG, PNG, DICOM</span>
+                </div>
+
+                <div id="drop-zone"
+                    class="border-2 border-dashed border-slate-600 rounded-xl p-12 text-center cursor-pointer hover:border-medical-500 hover:bg-slate-800/50 transition-all duration-300 group-hover:shadow-[0_0_20px_rgba(14,165,233,0.1)] relative overflow-hidden">
+                    <input type="file" id="file-input" class="hidden" accept="image/*">
+
+                    <div class="relative z-10 transition-transform duration-300 transform group-hover:-translate-y-2">
+                        <div
+                            class="w-20 h-20 mx-auto bg-slate-800 rounded-full flex items-center justify-center mb-4 border border-slate-600 group-hover:border-medical-500 transition-colors">
+                            <svg class="w-10 h-10 text-slate-400 group-hover:text-medical-400 transition-colors"
+                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                </path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-medium text-white mb-2">Drag & Drop MRI Image</h3>
+                        <p class="text-slate-400 text-sm">or click to browse from computer</p>
+                    </div>
+                </div>
+
+                <!-- Preview Area (Hidden initially) -->
+                <div id="preview-container"
+                    class="hidden mt-6 relative rounded-xl overflow-hidden border border-slate-600 bg-black aspect-square max-h-96 mx-auto">
+                    <img id="preview-image" src="" alt="MRI Scan" class="w-full h-full object-contain opacity-80">
+                    <div id="scan-overlay" class="absolute inset-0 hidden">
+                        <div class="scan-line animate-scan"></div>
+                        <div class="absolute top-4 left-4 text-xs font-mono text-medical-400 animate-pulse">Scanning...
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-b from-medical-500/10 to-transparent pointer-events-none">
+                        </div>
+
+                        <!-- Grid Overlay -->
+                        <div
+                            class="absolute inset-0 bg-[linear-gradient(rgba(14,165,233,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(14,165,233,0.1)_1px,transparent_1px)] bg-[size:40px_40px]">
+                        </div>
+                    </div>
+                    <button id="remove-btn"
+                        class="absolute top-2 right-2 bg-red-500/80 hover:bg-red-600 text-white p-2 rounded-lg transition-colors z-20">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="mt-6">
+                    <button id="analyze-btn"
+                        class="w-full py-4 rounded-xl bg-slate-700 text-slate-400 font-bold cursor-not-allowed transition-all duration-300"
+                        disabled>
+                        Analyze Scan
+                    </button>
+                </div>
+            </div>
+
+            <!-- Results Panel -->
+            <div
+                class="glass-panel rounded-2xl p-8 border border-slate-700 shadow-xl min-h-[500px] flex flex-col relative overflow-hidden">
+                <div class="flex items-center justify-between mb-6 relative z-10">
+                    <h2 class="text-2xl font-bold flex items-center gap-2">
+                        <svg class="w-6 h-6 text-neural-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+                            </path>
+                        </svg>
+                        Diagnostic Report
+                    </h2>
+                    <div id="status-badge"
+                        class="px-3 py-1 rounded-full text-xs font-mono bg-slate-800 text-slate-400 border border-slate-600">
+                        Waiting for input
+                    </div>
+                </div>
+
+                <div id="loading-state"
+                    class="hidden flex-grow flex flex-col items-center justify-center text-center space-y-6">
+                    <div class="relative w-24 h-24">
+                        <div class="absolute inset-0 rounded-full border-4 border-slate-700"></div>
+                        <div class="absolute inset-0 rounded-full border-t-4 border-medical-500 animate-spin"></div>
+                        <div class="absolute inset-4 rounded-full border-4 border-slate-700 opacity-50"></div>
+                        <div class="absolute inset-4 rounded-full border-b-4 border-neural-500 animate-spin"
+                            style="animation-direction: reverse; animation-duration: 1.5s;"></div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-semibold text-white">Processing Neuroimaging Data</h3>
+                        <p class="text-slate-400 text-sm mt-2">Running CNN inference model...</p>
+                        <div class="mt-4 w-64 h-2 bg-slate-800 rounded-full overflow-hidden mx-auto">
+                            <div class="h-full bg-gradient-to-r from-medical-500 to-neural-500 animate-[pulse_2s_infinite]"
+                                style="width: 60%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="empty-state"
+                    class="flex-grow flex flex-col items-center justify-center text-center opacity-50">
+                    <svg class="w-20 h-20 text-slate-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                            d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                        </path>
+                    </svg>
+                    <p class="text-lg text-slate-400">Upload an MRI scan to view detailed analysis and predictions.</p>
+                </div>
+
+                <div id="results-content" class="hidden space-y-6 animate-[fadeIn_0.5s_ease-out]">
+                    <!-- Main Prediction -->
+                    <div class="bg-slate-800/50 rounded-xl p-6 border border-slate-600 select-none">
+                        <div class="text-sm text-slate-400 mb-1">Predicted Classification</div>
+                        <div class="flex items-end justify-between">
+                            <h3 id="result-label" class="text-3xl font-bold text-white tracking-wide">Moderate Demented
+                            </h3>
+                            <span id="confidence-score" class="text-2xl font-mono text-medical-400">98.4%</span>
+                        </div>
+                        <div class="w-full bg-slate-700 h-2 mt-4 rounded-full overflow-hidden">
+                            <div id="confidence-bar"
+                                class="h-full bg-gradient-to-r from-medical-500 to-neural-500 transition-all duration-1000 w-0">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Metrics using Grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-slate-800/30 p-4 rounded-xl border border-slate-700">
+                            <div class="text-xs text-slate-400 mb-1">CDR Score</div>
+                            <div id="cdr-score" class="text-xl font-bold text-white">0.5</div>
+                        </div>
+                        <div class="bg-slate-800/30 p-4 rounded-xl border border-slate-700">
+                            <div class="text-xs text-slate-400 mb-1">Processing Time</div>
+                            <div class="text-xl font-bold text-white">0.42s</div>
+                        </div>
+                        <div class="bg-slate-800/30 p-4 rounded-xl border border-slate-700">
+                            <div class="text-xs text-slate-400 mb-1">Brain Volume Loss</div>
+                            <div class="text-xl font-bold text-red-400">Detected</div>
+                        </div>
+                        <div class="bg-slate-800/30 p-4 rounded-xl border border-slate-700">
+                            <div class="text-xs text-slate-400 mb-1">Model Version</div>
+                            <div class="text-xl font-bold text-slate-300">ResNet-50 v2</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 p-4 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex gap-3">
+                        <svg class="w-6 h-6 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <p class="text-sm text-yellow-200/80">
+                            Note: This is an AI-assisted diagnosis tool. Results should be verified by a qualified
+                            neurologist.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Information Section -->
+        <section id="about" class="py-12 border-t border-slate-800 mt-12">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-4">How it Works</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Our system uses a Deep Convolutional Neural Network trained on thousands of MRI scans from the
+                        OASIS dataset. It identifies subtle patterns of atrophy in the hippocampus and cerebral cortex
+                        that are indicative of early-stage dementia.
+                    </p>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-4">Classification Classes</h3>
+                    <ul class="space-y-2 text-sm text-slate-400">
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-green-500"></span> Non
+                            Demented (CDR 0)</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-yellow-400"></span>
+                            Very Mild Dementia (CDR 0.5)</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                            Mild Dementia (CDR 1)</li>
+                        <li class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-red-600"></span>
+                            Moderate Dementia (CDR 2)</li>
+                    </ul>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-bold text-white mb-4">Research Background</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Developed as part of a final year university research project exploring "AI in Neurodegenerative
+                        Disease Diagnosis". The model achieves 95% validation accuracy on the test set.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="border-t border-slate-800 bg-slate-900 py-8 text-center text-slate-500 text-sm">
+        <p>&copy; 2026 NeuroScan AI Research Team. All rights reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
